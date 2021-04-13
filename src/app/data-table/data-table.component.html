@@ -1,0 +1,49 @@
+
+<table id="table">
+    
+    <tr>
+        <th colspan="4" class="header"><h3>Manage Employees</h3></th>
+        <th colspan="2" class="btn-header"><button (click) = "insertForm()" class="btn btn-success" id="showForm">Add new employee</button></th>
+    </tr>
+    <tr>
+        <td><b>Id</b></td>
+        <td><b>Name</b></td>
+        <td><b>Surname</b></td>
+        <td><b>Email</b></td>
+        <td><b>Phone</b></td>
+        <td><b>Method</b></td>
+    </tr>
+    <tr *ngFor = "let item of data">
+        <td>{{ item.employeeId }}</td>
+        <td>{{ item.firstName }}</td>
+        <td>{{ item.lastName }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.phone }}</td>
+        <td><button id="{{item.employeeId}}" (click)="remove($event)" class="btn btn-danger">Remove</button>&nbsp;
+            <button id="{{item.employeeId}}" (click)="showHideForm($event)" class="btn btn-warning">Update</button></td>
+    </tr>   
+</table>
+<form id="form" *ngIf="visible">
+    <label>First name:</label>
+    <input placeholder="mario" type="text" required  [(ngModel)]="employee.firstName" [ngModelOptions]="{standalone: true}"><br>
+    <label>Last name:</label>
+    <input placeholder="rossi" type="text" required [(ngModel)]="employee.lastName" [ngModelOptions]="{standalone: true}"><br>
+    <label>Email:</label>
+    <input placeholder="mario@rossi.com" type="email" required [(ngModel)]="employee.email" [ngModelOptions]="{standalone: true}"><br>
+    <label>Phone:</label>
+    <input placeholder="333-333-333" type="text" required [(ngModel)]="employee.phone" [ngModelOptions]="{standalone: true}"><br>
+    <button (click) = "update()" class="btn btn-primary">Update</button>
+</form>
+
+
+<form id="form" *ngIf="show">
+    <label>First name:</label>
+    <input placeholder="mario" type="text" required  [(ngModel)]="employee.firstName" [ngModelOptions]="{standalone: true}"><br>
+    <label>Last name:</label>
+    <input placeholder="rossi" type="text" required [(ngModel)]="employee.lastName" [ngModelOptions]="{standalone: true}"><br>
+    <label>Email:</label>
+    <input placeholder="mario@rossi.com" type="email" required [(ngModel)]="employee.email" [ngModelOptions]="{standalone: true}"><br>
+    <label>Phone:</label>
+    <input placeholder="333-333-333" type="text" required [(ngModel)]="employee.phone" [ngModelOptions]="{standalone: true}"><br>
+    <button (click) = "add()" class="btn btn-primary">Add</button>
+</form>
